@@ -63,7 +63,7 @@ function App(){
           const latitude= position.coords.latitude
           const longitude = position.coords.longitude
           const key = "b89829ca087a4503b44132911222206"
-          fetch(`http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${latitude},${longitude}&&days=3`)
+          fetch(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${latitude},${longitude}&&days=3`)
           .then(res => {
             if (!res.ok) {
                 throw Error("Weather data not available")
