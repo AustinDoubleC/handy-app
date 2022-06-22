@@ -1,38 +1,257 @@
-.App {
-  text-align: center;
+.app{
+  margin:0px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*===Todo===*/
+.todo-app{
+  border:solid 2px #274ba4;;
+  width: 280px;
+  border-radius: 20px;
+  padding: 0px 10px 20px;
+  margin-bottom: 10px;
+  background-color: #9bd9f4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.toto-app h3,
+.toto-app p{
+  margin:0px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#btnTodoToggle{
+  background-color: #274ba4;
+  border-radius: 5px;
   color: white;
+  border: none;
+  padding: 5px 10px;
+}
+#btn-new-todo{
+  background-color: #274ba4;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: 5px 10px;
 }
 
-.App-link {
-  color: #61dafb;
+#btn-new-todo:active,
+#btn-new-todo:hover{
+  background-color: rgb(232, 175, 71);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#todo-item-container{
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border:  #274ba4 solid 2px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+#todo-item{
+  width:180px;
+  margin: 0px;
+  margin-left: 5px;
+}
+#btn-todo-delete,
+#btn-todo-edit{
+  height: 30px;
+  width: 30px;
+  background-color: #274ba4;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  margin-left: 5px;
+}
+#btn-todo-delete:hover,
+#btn-todo-edit:hover,
+#btn-todo-delete:hover,
+#btn-todo-edit:hover{
+  background-color: rgb(232, 175, 71);
+}
+
+#btnTodoToggle:hover,
+#btnTodoToggle:active{
+  background-color: rgb(232, 175, 71);
+}
+
+
+
+/*===habit===*/
+.habit-app{
+  background-color: #9bd9f4;
+  border-radius: 20px; 
+  border: solid 2px #274ba4;
+  padding: 0px 10px 20px;
+  width: 280px; 
+}
+#habit-heading{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.habit-app h3,
+.habit-app p{
+  margin:0px;
+}
+
+.btn-habit-delete,
+.btn-habit-add{
+  height: 30px;
+  width: 30px;
+  background-color: #274ba4;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  margin-left: 5px;
+}
+.btn-habit-delete:hover,
+.btn-habit-add:hover,
+.btn-habit-delete:hover,
+.btn-habit-add:hover{
+  background-color: rgb(232, 175, 71);
+}
+
+
+.habit-container{
+  display: flex;
+  align-items: center;
+}
+.daily-container,
+.weekly-container{
+  padding:5px 10px;
+
+}
+.weekly-container{
+  margin-bottom: 10px;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom: solid 2px #274ba4;
+  border-left: solid 2px #274ba4;
+  border-right: solid 2px #274ba4;
+}
+.daily-container{
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: solid 2px #274ba4;
+  border-left: solid 2px #274ba4;
+  border-right: solid 2px #274ba4;
+}
+
+.habit{
+  font-weight: bold;
+  width:150px;
+  margin-left:20px
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+#new-habit{
+  margin-bottom: 10px;
+  font-size: 16px;
+  width: 250px;
+}
+#habit-target{
+  width: 30px;
+}
+#habitForm-main{
+  background-color:#274ba4;
+  padding:5px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  color: white
+}
+
+#new-habit-detail{
+  display: flex;
+}
+#new-habit-detail p{
+  margin:0px 5px
+}
+#btn-new-habit{
+  background-color: #9bd9f4;
+  border-radius: 5px;
+  color: #274ba4;
+  border: none;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+#btn-new-habit:hover,
+#btn-new-habit:active{ 
+  background-color: rgb(232, 175, 71);
+}
+#btnToggle{
+  background-color: #274ba4;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+
+
+#btnToggle:hover,
+#btnToggle:active{
+  background-color: rgb(232, 175, 71);
+}
+
+/*===weather===*/
+.weather{
+  width:300px;
+  
+}
+
+.weather-today,
+.weather-tomorrow,
+.weather-twoDays{
+  display: flex;
+  background-color: #9bd9f4;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  border: solid 2px #274ba4;
+}
+
+.weather-tomorrow img,
+.weather-twoDays img{
+  width: 50px;
+  margin-left: 20px;
+}
+.weather-tomorrow,
+.weather-twoDays{
+  align-items: center;
+}
+
+.weather-tomorrow h3,
+.weather-twoDays h3{
+  margin-left: 30px;
+}
+
+.today-info{
+  display: flex;
+  padding-top: 10px;
+}
+.today-info h3{
+  margin-left: 10px;
+  font-size: 16px;
+}
+.today-minmax{
+  display:flex;
+}
+.today-minmax p{
+  display:flex;
+  margin-left: 20px;
+}
+
+.weather-main h2{
+  margin-left: 50px;
+  font-size: 48px;
+  margin-top:0px;
+  margin-bottom: 0px;
+}
+
+.weather-today img{
+  width: 100px;
+  height: 100px;
 }
