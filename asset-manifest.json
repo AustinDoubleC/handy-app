@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/handy-app/static/css/main.559e03f1.css",
+    "main.js": "/handy-app/static/js/main.8b72adcf.js",
+    "index.html": "/handy-app/index.html",
+    "main.559e03f1.css.map": "/handy-app/static/css/main.559e03f1.css.map",
+    "main.8b72adcf.js.map": "/handy-app/static/js/main.8b72adcf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.559e03f1.css",
+    "static/js/main.8b72adcf.js"
+  ]
+}
