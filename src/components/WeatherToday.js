@@ -21,7 +21,7 @@ const WeatherToday =({weather})=>{
             </div>
           </div>
         </div>
-        <Link to="/weather" id="link-forecast"><p >see weather forecast</p></Link>
+        <Link to="/handy-app/weather" id="link-forecast"><p >see weather forecast</p></Link>
     </div>
 
     )

@@ -6,9 +6,9 @@ const Nav = ()=>{
         <nav>
             <ul>
                 
-                <Link className="nav-link" to="/weather"><li><i className="fa-solid fa-temperature-full"></i></li></Link>
-                <Link className="nav-link" to="/"><li><i className="fa-solid fa-house"></i></li></Link>
-                <Link className="nav-link" to="/note"><li><i className="fa-regular fa-note-sticky"></i></li></Link>
+                <Link className="nav-link" to="/handy-app/weather"><li><i className="fa-solid fa-temperature-full"></i></li></Link>
+                <Link className="nav-link" to="/handy-app/"><li><i className="fa-solid fa-house"></i></li></Link>
+                <Link className="nav-link" to="/handy-app/note"><li><i className="fa-regular fa-note-sticky"></i></li></Link>
             </ul>
         </nav>
     )

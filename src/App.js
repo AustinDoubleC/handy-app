@@ -128,9 +128,9 @@ function App(){
       <div className='route-container'>
       <Nav />
       <Routes>
-        <Route path="/" exact element={<div><WeatherToday weather={weather}/><Todo todos={todos} setTodos={setTodos} todo={todo} setTodo={setTodo} todoEditing={todoEditing} setTodoEditing={setTodoEditing} editingText={editingText} setEditingText={setEditingText}/><HabitApp habit={habit} setHabit={setHabit} frequency={frequency} setFrequency={setFrequency} target={target} setTarget={setTarget} habits={habits} setHabits={setHabits}/></div>}/>
-        <Route path="/weather" element={<Weather weather={weather} tomorrow={tomorrow} twoDays={twoDays}/>}/>
-        <Route path="/note" element={<Note notes={notes} setNotes={setNotes} note={note} setNote={setNote} noteEditing={noteEditing} setNoteEditing={setNoteEditing} editingNote={editingNote} setEditingNote={setEditingNote}/>}/>
+        <Route path="/handy-app" exact element={<div><WeatherToday weather={weather}/><Todo todos={todos} setTodos={setTodos} todo={todo} setTodo={setTodo} todoEditing={todoEditing} setTodoEditing={setTodoEditing} editingText={editingText} setEditingText={setEditingText}/><HabitApp habit={habit} setHabit={setHabit} frequency={frequency} setFrequency={setFrequency} target={target} setTarget={setTarget} habits={habits} setHabits={setHabits}/></div>}/>
+        <Route path="/handy-app/weather" element={<Weather weather={weather} tomorrow={tomorrow} twoDays={twoDays}/>}/>
+        <Route path="/handy-app/note" element={<Note notes={notes} setNotes={setNotes} note={note} setNote={setNote} noteEditing={noteEditing} setNoteEditing={setNoteEditing} editingNote={editingNote} setEditingNote={setEditingNote}/>}/>
       </Routes>
       </div>
     </div>

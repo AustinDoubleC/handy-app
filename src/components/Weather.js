@@ -34,7 +34,7 @@ const Weather =({weather, tomorrow, twoDays})=>{
           <h3>low {twoDays.min}º</h3>
           <h3>high {twoDays.max}º</h3>
         </div>
-        <Link to="/" id="link-forecast"><p >return to Home</p></Link>
+        <Link to="/handy-app" id="link-forecast"><p >return to Home</p></Link>
     </div>
 
     )
