@@ -1,6 +1,50 @@
-.app{
+body{
   margin:0px;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #999999;
+}
+.app{
+  width: 100%;
+  
+}
+.route-container{
+  background-color: white;
+  width: 320px;
+  margin: auto;
+  padding-bottom: 20px;
+}
+nav{
+  display: flex;
+  margin-bottom: 0px;
+  width: 320px;
+  background-color: #274ba4;
+  margin-left: auto;
+  margin-right: auto;
+  position: sticky;
+  top:0;
+}
+
+nav ul{
+  list-style: none;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 5px;
+  
+}
+.nav-link{
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  margin-bottom: 0px;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.nav-link:hover,
+.nav-link:active{
+  color: rgb(232, 175, 71);
 }
 
 /*===Todo===*/
@@ -11,6 +55,8 @@
   padding: 0px 10px 20px;
   margin-bottom: 10px;
   background-color: #9bd9f4;
+  margin-right:auto;
+  margin-left:auto;
 }
 
 .toto-app h3,
@@ -24,7 +70,8 @@
   border: none;
   padding: 5px 10px;
 }
-#btn-new-todo{
+#btn-new-todo,
+#btn-todo-editSubmit{
   background-color: #274ba4;
   border-radius: 5px;
   color: white;
@@ -33,7 +80,9 @@
 }
 
 #btn-new-todo:active,
-#btn-new-todo:hover{
+#btn-new-todo:hover,
+#btn-todo-editSubmit:active,
+#btn-todo-editSubmit:hover{
   background-color: rgb(232, 175, 71);
 }
 
@@ -54,8 +103,8 @@
 #btn-todo-edit{
   height: 30px;
   width: 30px;
-  background-color: #274ba4;
-  color: white;
+  background-color: white;
+  color: #274ba4;
   cursor: pointer;
   border-radius: 5px;
   border: none;
@@ -72,7 +121,11 @@
 #btnTodoToggle:active{
   background-color: rgb(232, 175, 71);
 }
-
+.input-todo{
+  width:200px;
+  font-size: 16px;
+  height: 20px;
+}
 
 
 /*===habit===*/
@@ -81,7 +134,9 @@
   border-radius: 20px; 
   border: solid 2px #274ba4;
   padding: 0px 10px 20px;
-  width: 280px; 
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 #habit-heading{
   margin-top: 10px;
@@ -199,10 +254,23 @@
 
 /*===weather===*/
 .weather{
-  width:300px;
-  
+  width:300px;  
+  margin-left: auto;
+  margin-right: auto;
+}
+#link-forecast{
+  text-decoration:none;
+  color: #274ba4;
+  font-style: italic;
+}
+#link-forecast:hover{
+  color: rgb(232, 175, 71);
 }
 
+#link-forecast p{
+margin-top: 0px;
+text-align: right;
+}
 .weather-today,
 .weather-tomorrow,
 .weather-twoDays{
@@ -254,4 +322,112 @@
 .weather-today img{
   width: 100px;
   height: 100px;
+}
+/*---note---*/
+textarea{
+  resize: vertical;
+}
+.note-app{
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#add-new-note,
+#note-edit-area{
+  width: 280px;
+  height: 150px;
+  background-color: rgb(204, 249, 234);
+  border: none;
+}
+
+#note-edit-area{
+  background-color: #9bd9f4;
+}
+
+#add-new-note:focus,
+#note-edit-area:focus{
+  outline: none;
+}
+#note-item-container{
+  width:300px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  word-wrap:break-word;
+  background-color: rgb(246, 246, 153);
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+#btn-note-delete,
+#btn-note-edit{
+  background-color: rgb(246, 246, 153);
+  border: none;
+}
+#btn-note-delete:hover,
+#btn-note-edit:hover,
+#btn-note-delete:active,
+#btn-note-edit:active{
+  color:rgb(232, 175, 71);
+}
+
+#btn-new-note,
+#btn-edit-note{
+  border: 0px;
+  padding: 5px 10px;
+  background-color: rgb(204, 249, 234);
+  font-weight: bold;
+}
+
+#btn-edit-note{
+  background-color: #9bd9f4;
+}
+
+
+#btn-new-note:hover,
+#btn-new-note:active,
+#btn-edit-note:hover,
+#btn-edit-note:active{
+  cursor: pointer;
+  background-color: rgb(232, 175, 71);
+}
+
+
+#noteForm,
+#note-edit-container{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  align-items: center;
+  background-color: rgb(204, 249, 234);
+  margin-top: 10px;
+}
+
+#note-edit-container{
+  background-color: #9bd9f4;
+  margin-bottom: 10px;
+}
+#noteRemain,
+#editNoteRemain{
+  font-style: italic;
+  color: #999999;
+  margin-left: 5px;
+}
+
+#noteFormBottom,
+#note-edit-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#note-item{
+  white-space: pre-wrap;
+  padding:0px 10px;
+}
+
+#note-item-bottom{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }

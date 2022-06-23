@@ -37,6 +37,11 @@ const HabitApp =({habit, setHabit, frequency, setFrequency, target, setTarget, h
         const updatedHabit = [...habits].filter((habit) => habit.id !== id)
         setHabits(updatedHabit)
       }
+      const handleValue=(e)=>{
+        if (e.target.value>=1){
+          setTarget(e.target.value)
+        }  
+      }
     
       const toggleForm=()=>{
         if (document.getElementById("habitForm").style.display==="none"){
@@ -91,7 +96,7 @@ return (
         <input type="text" value={habit} onChange={(e)=>setHabit(e.target.value)} placeholder="Enter new habit..." id="new-habit"></input>
         <div id="new-habit-detail">
           <p>target:</p>
-          <input type="number" id="habit-target" value={target} onChange={(e)=>setTarget(e.target.value)}></input>
+          <input type="number" id="habit-target" value={target} onChange={(e)=>handleValue(e)}></input>
           <p>per</p>
           <select value={frequency} onChange={(e)=>setFrequency(e.target.value)}>
             <option>Day</option>
@@ -101,7 +106,7 @@ return (
         </div>
       </div>
     </form>
-    <button onClick={toggleForm} id="btnToggle">Hide form</button>
+    <button onClick={toggleForm} id="btnToggle">Hide add habit</button>
 </div>
 )
 }

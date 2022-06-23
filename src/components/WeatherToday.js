@@ -1,11 +1,12 @@
 import React from "react"
-
+import {Link} from "react-router-dom"
 const WeatherToday =({weather})=>{
   
     
     
     return (
         <div className="weather">
+          <h2>Today's weather</h2>
         <div className='weather-today'>
           <img src={weather.iconUrl} alt="weather icon"/>
           <div className="weather-main">
@@ -20,6 +21,7 @@ const WeatherToday =({weather})=>{
             </div>
           </div>
         </div>
+        <Link to="/weather" id="link-forecast"><p >see weather forecast</p></Link>
     </div>
 
     )

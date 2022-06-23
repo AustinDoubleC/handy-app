@@ -1,11 +1,13 @@
 import React from "react"
-
+import {Link} from "react-router-dom"
 const Weather =({weather, tomorrow, twoDays})=>{
   
     
     
     return (
+        
         <div className="weather">
+          <h2>Weather forecast</h2>
         <div className='weather-today'>
           <img src={weather.iconUrl} alt="weather icon"/>
           <div className="weather-main">
@@ -32,6 +34,7 @@ const Weather =({weather, tomorrow, twoDays})=>{
           <h3>low {twoDays.min}º</h3>
           <h3>high {twoDays.max}º</h3>
         </div>
+        <Link to="/" id="link-forecast"><p >return to Home</p></Link>
     </div>
 
     )

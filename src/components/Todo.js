@@ -4,13 +4,14 @@ const Todo =({todos, setTodos, todo, setTodo, todoEditing, setTodoEditing, editi
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        const newTodo = {
+        if (todo.trim()){
+          const newTodo = {
           id: new Date().getTime(),
           text: todo,
           completed: false,
         }
         setTodos([...todos].concat(newTodo))
-        setTodo("")
+        setTodo("")}
       }
     
       const deleteTodo =(id)=>{
@@ -30,15 +31,26 @@ const Todo =({todos, setTodos, todo, setTodo, todoEditing, setTodoEditing, editi
       const editTodo = (id) =>{
         const updatedTodos = [...todos].map((todo) =>{
           if(todo.id===id) {
-            todo.text = editingText
+            if (editingText.trim()){
+              todo.text = editingText
+            }
+           
           }
           return todo
         })
-        setTodos(updatedTodos)
-        setTodoEditing(null)
-        setEditingText("")
+          setTodos(updatedTodos)
+          setTodoEditing(null)
+          setEditingText("")
+        
       }
-      
+      const copyTodo = (id) =>{
+        [...todos].map((todo) =>{
+          if(todo.id===id) {
+            navigator.clipboard.writeText(todo.text)
+          }
+          return todo
+        })
+      }
 const toggleTodoForm=()=>{
     if (document.getElementById("todoForm").style.display==="none"){
         document.getElementById("todoForm").style.display="block"
@@ -61,8 +73,13 @@ return(
           type="text" 
           onChange = {(e)=>setEditingText(e.target.value)} 
           valiue = {editingText}
+          placeholder="ctrl+v to paste original todo"
+          className="input-todo"
           />
-          <button onClick={()=>editTodo(todo.id)}>submit edit</button>
+          <button onClick={()=>{
+            editTodo(todo.id)
+            copyTodo(todo.id)
+            }} id="btn-todo-editSubmit">Save</button>
           </div>
           )
           :
@@ -74,10 +91,10 @@ return(
 
       </div>)}
       <form onSubmit={handleSubmit} id="todoForm">
-        <input type="text" onChange={(e)=>setTodo(e.target.value)} value={todo}/>
-        <button type="submit" id="btn-new-todo">Add Todo</button>
+        <input className="input-todo"type="text" placeholder="Enter new todo..." onChange={(e)=>setTodo(e.target.value)} value={todo}/>
+        <button type="submit" id="btn-new-todo">Add</button>
       </form>
-      <button onClick={toggleTodoForm} id="btnTodoToggle">Hide form</button>
+      <button onClick={toggleTodoForm} id="btnTodoToggle">Hide add todo</button>
     </div>
 )
 }

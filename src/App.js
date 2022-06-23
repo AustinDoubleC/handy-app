@@ -4,6 +4,9 @@ import Todo from './components/Todo';
 import HabitApp from './components/HabitApp.js';
 import Weather from './components/Weather.js';
 import WeatherToday from './components/WeatherToday.js';
+import Nav from "./components/Nav"
+import Note from './components/Note';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App(){
 
@@ -21,6 +24,11 @@ function App(){
   const [tomorrow,settomorrow] = useState({})
   const [twoDays, setTwoDays] = useState({})
 
+  const [notes, setNotes] = useState([])
+  const [note, setNote] = useState("")
+  const [noteEditing, setNoteEditing] = useState(null)
+  const [editingNote, setEditingNote] = useState("")
+
   useEffect(()=>{
     getWeather()
   },[])
@@ -30,6 +38,8 @@ function App(){
     const loadedTodo = JSON.parse(loadTodo)
     const loadHabit = localStorage.getItem("Habits")
     const loadedHabit = JSON.parse(loadHabit)
+    const loadNote = localStorage.getItem("Notes")
+    const loadedNote = JSON.parse(loadNote)
     if (loadedTodo){
       if (loadedTodo.length>0){
       setTodos(loadedTodo)}
@@ -37,8 +47,6 @@ function App(){
       setTodos([])
       localStorage.setItem("Todos",JSON.stringify(todos))
     }
-
-    
     if (loadedHabit){
       if (loadedHabit.length>0){
       setHabits(loadedHabit)}
@@ -46,11 +54,23 @@ function App(){
       setHabit([])
       localStorage.setItem("Habits",JSON.stringify(habits))
     }
+    if (loadedNote){
+      if (loadedNote.length>0){
+      setNotes(loadedNote)}
+    }else {
+      setNotes([])
+      localStorage.setItem("Notes",JSON.stringify(notes))
+    }
   },[])
+
+  
   
   useEffect(()=>{
     localStorage.setItem("Todos",JSON.stringify(todos))
   },[todos])
+  useEffect(()=>{
+    localStorage.setItem("Notes",JSON.stringify(notes))
+  },[notes])
 
   useEffect(()=>{
     localStorage.setItem("Habits",JSON.stringify(habits))
@@ -103,11 +123,18 @@ function App(){
       
   
   return (
+    <Router>
     <div className="app">
-      <WeatherToday weather={weather}/>
-      <Todo todos={todos} setTodos={setTodos} todo={todo} setTodo={setTodo} todoEditing={todoEditing} setTodoEditing={setTodoEditing} editingText={editingText} setEditingText={setEditingText}/>
-      <HabitApp habit={habit} setHabit={setHabit} frequency={frequency} setFrequency={setFrequency} target={target} setTarget={setTarget} habits={habits} setHabits={setHabits}/>
+      <div className='route-container'>
+      <Nav />
+      <Routes>
+        <Route path="/" exact element={<div><WeatherToday weather={weather}/><Todo todos={todos} setTodos={setTodos} todo={todo} setTodo={setTodo} todoEditing={todoEditing} setTodoEditing={setTodoEditing} editingText={editingText} setEditingText={setEditingText}/><HabitApp habit={habit} setHabit={setHabit} frequency={frequency} setFrequency={setFrequency} target={target} setTarget={setTarget} habits={habits} setHabits={setHabits}/></div>}/>
+        <Route path="/weather" element={<Weather weather={weather} tomorrow={tomorrow} twoDays={twoDays}/>}/>
+        <Route path="/note" element={<Note notes={notes} setNotes={setNotes} note={note} setNote={setNote} noteEditing={noteEditing} setNoteEditing={setNoteEditing} editingNote={editingNote} setEditingNote={setEditingNote}/>}/>
+      </Routes>
+      </div>
     </div>
+    </Router>
   );
         }
 export default App;
