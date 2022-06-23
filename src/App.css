@@ -431,3 +431,12 @@ textarea{
   width: 100%;
   justify-content: flex-end;
 }
+
+@media screen and (max-width:480px) {
+  .route-container{
+    width: 100%;
+  }
+  nav{
+    width: 100%;
+  }
+}
