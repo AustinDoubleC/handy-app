@@ -9,73 +9,13 @@ import Note from './components/Note';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App(){
-
-  const [todos, setTodos] = useState([])
-  const [todo, setTodo] = useState("")
-  const [todoEditing, setTodoEditing] = useState(null)
-  const [editingText, setEditingText] = useState("")
-  
-  const [habit, setHabit] =useState("")
-  const [frequency, setFrequency] =useState("Day")
-  const [target, setTarget] =useState(1)
-  const [habits, setHabits] = useState([])
-
   const [weather,setWeather] = useState({})
   const [tomorrow,settomorrow] = useState({})
   const [twoDays, setTwoDays] = useState({})
 
-  const [notes, setNotes] = useState([])
-  const [note, setNote] = useState("")
-  const [noteEditing, setNoteEditing] = useState(null)
-  const [editingNote, setEditingNote] = useState("")
-
   useEffect(()=>{
     getWeather()
   },[])
-
-  useEffect(()=>{
-    const loadTodo = localStorage.getItem("Todos")
-    const loadedTodo = JSON.parse(loadTodo)
-    const loadHabit = localStorage.getItem("Habits")
-    const loadedHabit = JSON.parse(loadHabit)
-    const loadNote = localStorage.getItem("Notes")
-    const loadedNote = JSON.parse(loadNote)
-    if (loadedTodo){
-      if (loadedTodo.length>0){
-      setTodos(loadedTodo)}
-    }else {
-      setTodos([])
-      localStorage.setItem("Todos",JSON.stringify(todos))
-    }
-    if (loadedHabit){
-      if (loadedHabit.length>0){
-      setHabits(loadedHabit)}
-    }else {
-      setHabit([])
-      localStorage.setItem("Habits",JSON.stringify(habits))
-    }
-    if (loadedNote){
-      if (loadedNote.length>0){
-      setNotes(loadedNote)}
-    }else {
-      setNotes([])
-      localStorage.setItem("Notes",JSON.stringify(notes))
-    }
-  },[])
-
-  
-  
-  useEffect(()=>{
-    localStorage.setItem("Todos",JSON.stringify(todos))
-  },[todos])
-  useEffect(()=>{
-    localStorage.setItem("Notes",JSON.stringify(notes))
-  },[notes])
-
-  useEffect(()=>{
-    localStorage.setItem("Habits",JSON.stringify(habits))
-  },[habits])
-  
 
     const getWeather=()=>{
         let day = new Date()
@@ -114,23 +54,18 @@ function App(){
         
         })
         .catch(err => console.error(err))
-          
-          
-          
-    
       });
       }
-      
-  
+    
   return (
     <Router>
     <div className="app">
       <div className='route-container'>
       <Nav />
       <Routes>
-        <Route path="/handy-app" exact element={<div><WeatherToday weather={weather}/><Todo todos={todos} setTodos={setTodos} todo={todo} setTodo={setTodo} todoEditing={todoEditing} setTodoEditing={setTodoEditing} editingText={editingText} setEditingText={setEditingText}/><HabitApp habit={habit} setHabit={setHabit} frequency={frequency} setFrequency={setFrequency} target={target} setTarget={setTarget} habits={habits} setHabits={setHabits}/></div>}/>
+        <Route path="/handy-app" exact element={<div><WeatherToday weather={weather}/><Todo /><HabitApp/></div>}/>
         <Route path="/handy-app/weather" element={<Weather weather={weather} tomorrow={tomorrow} twoDays={twoDays}/>}/>
-        <Route path="/handy-app/note" element={<Note notes={notes} setNotes={setNotes} note={note} setNote={setNote} noteEditing={noteEditing} setNoteEditing={setNoteEditing} editingNote={editingNote} setEditingNote={setEditingNote}/>}/>
+        <Route path="/handy-app/note" element={<Note />}/>
       </Routes>
       </div>
     </div>

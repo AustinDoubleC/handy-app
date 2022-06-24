@@ -1,6 +1,31 @@
-import React from "react"
+import React,{useEffect,useState} from "react"
 
-const HabitApp =({habit, setHabit, frequency, setFrequency, target, setTarget, habits, setHabits})=>{
+const HabitApp =()=>{
+  const [habit, setHabit] =useState("")
+  const [frequency, setFrequency] =useState("Day")
+  const [target, setTarget] =useState(1)
+  const [habits, setHabits] = useState([])
+  const d = new Date();
+  const day = d.getDay();
+  const today = d.getDate()
+
+  useEffect(()=>{
+    const loadHabit = localStorage.getItem("Habits")
+    const loadedHabit = JSON.parse(loadHabit)
+
+    if (loadedHabit){
+      if (loadedHabit.length>0){
+      setHabits(loadedHabit)}
+    }else {
+      setHabit([])
+      localStorage.setItem("Habits",JSON.stringify(habits))
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem("Habits",JSON.stringify(habits))
+  },[habits])
+
     const handleSubmitForm= (e)=>{
         e.preventDefault()
         if (habit.trim()){
@@ -10,7 +35,8 @@ const HabitApp =({habit, setHabit, frequency, setFrequency, target, setTarget, h
             frequency: frequency,
             target:target,
             completed:false,
-            rep:0
+            rep:0,
+            date:today
           }
           setHabits([...habits].concat(newHabit))
         }
@@ -46,7 +72,7 @@ const HabitApp =({habit, setHabit, frequency, setFrequency, target, setTarget, h
       const toggleForm=()=>{
         if (document.getElementById("habitForm").style.display==="none"){
           document.getElementById("habitForm").style.display="block"
-          document.getElementById("btnToggle").innerText="Hide form"
+          document.getElementById("btnToggle").innerText="Hide add habit"
         }else{
           document.getElementById("habitForm").style.display="none"
           document.getElementById("btnToggle").innerText="Add new habit"

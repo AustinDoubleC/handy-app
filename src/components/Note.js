@@ -1,7 +1,29 @@
-import React from "react"
+import React,{useEffect,useState} from "react"
 
-const Note =({notes, setNotes, note, setNote, noteEditing, setNoteEditing, editingNote, setEditingNote})=>{
+const Note =()=>{
+  const [notes, setNotes] = useState([])
+  const [note, setNote] = useState("")
+  const [noteEditing, setNoteEditing] = useState(null)
+  const [editingNote, setEditingNote] = useState("")
+  
+  useEffect(()=>{
+    const loadNote = localStorage.getItem("Notes")
+    const loadedNote = JSON.parse(loadNote)
 
+    if (loadedNote){
+      if (loadedNote.length>0){
+      setNotes(loadedNote)}
+    }else {
+      setNotes([])
+      localStorage.setItem("Notes",JSON.stringify(notes))
+    }
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem("Notes",JSON.stringify(notes))
+  },[notes])
+
+  
   const noteLimit = 200;
     const handleSubmit=(e)=>{
         e.preventDefault()
@@ -21,17 +43,16 @@ const Note =({notes, setNotes, note, setNote, noteEditing, setNoteEditing, editi
       }
 
       const editNote = (id) =>{
+        if (editingNote.trim()){
         const updatedNotes = [...notes].map((note) =>{
           if(note.id===id) {
-            if (editingNote.trim()){
                 note.text = editingNote
-            }
           }
           return note
         })
         setNotes(updatedNotes)
         setNoteEditing(null)
-        setEditingNote("")
+        setEditingNote("")}
       }
       const copyNote=(id)=>{
         [...notes].map((note) =>{
@@ -67,10 +88,11 @@ return(
           onChange = {(e)=>{setEditingNote(e.target.value)}} 
           valiue = {editingNote}
           placeholder = {`(ctrl+v to paste original note)`}
-          id="note-edit-area" 
+          id="note-edit-area"
           />
           <div id="note-edit-bottom">
           <small id="editNoteRemain">{noteLimit-editingNote.length} characters remaining </small>
+          <button onClick={()=>setNoteEditing(null)} id="btn-edit-cancel">Cancel</button>
           <button onClick={()=>editNote(note.id)} id="btn-edit-note">Save</button>
           </div>
           

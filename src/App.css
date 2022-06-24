@@ -70,8 +70,7 @@ nav ul{
   border: none;
   padding: 5px 10px;
 }
-#btn-new-todo,
-#btn-todo-editSubmit{
+#btn-new-todo{
   background-color: #274ba4;
   border-radius: 5px;
   color: white;
@@ -79,11 +78,28 @@ nav ul{
   padding: 5px 10px;
 }
 
+#btn-todo-editSubmit,
+#btn-todo-cancel-edit{
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+#btn-todo-editSubmit{
+  background-color: green;
+}
+#btn-todo-cancel-edit{
+  background-color: red;
+}
+
 #btn-new-todo:active,
 #btn-new-todo:hover,
 #btn-todo-editSubmit:active,
-#btn-todo-editSubmit:hover{
+#btn-todo-editSubmit:hover,
+#btn-todo-cancel-edit:active,
+#btn-todo-cancel-edit:hover{
   background-color: rgb(232, 175, 71);
+  cursor: pointer;
 }
 
 #todo-item-container{
@@ -371,14 +387,16 @@ textarea{
 }
 
 #btn-new-note,
-#btn-edit-note{
+#btn-edit-note,
+#btn-edit-cancel{
   border: 0px;
   padding: 5px 10px;
   background-color: rgb(204, 249, 234);
   font-weight: bold;
 }
 
-#btn-edit-note{
+#btn-edit-note,
+#btn-edit-cancel{
   background-color: #9bd9f4;
 }
 
@@ -386,7 +404,9 @@ textarea{
 #btn-new-note:hover,
 #btn-new-note:active,
 #btn-edit-note:hover,
-#btn-edit-note:active{
+#btn-edit-note:active,
+#btn-edit-cancel:hover,
+#btn-edit-cancel:active{
   cursor: pointer;
   background-color: rgb(232, 175, 71);
 }

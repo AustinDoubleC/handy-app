@@ -1,6 +1,26 @@
-import React from "react"
+import React,{useEffect,useState} from "react"
 
-const Todo =({todos, setTodos, todo, setTodo, todoEditing, setTodoEditing, editingText, setEditingText})=>{
+const Todo =()=>{
+  const [todos, setTodos] = useState([])
+  const [todo, setTodo] = useState("")
+  const [todoEditing, setTodoEditing] = useState(null)
+  const [editingText, setEditingText] = useState("")
+
+  useEffect(()=>{
+    const loadTodo = localStorage.getItem("Todos")
+     const loadedTodo = JSON.parse(loadTodo)
+     if (loadedTodo){
+       if (loadedTodo.length>0){
+       setTodos(loadedTodo)}
+     }else {
+       setTodos([])
+       localStorage.setItem("Todos",JSON.stringify(todos))
+     }
+   },[])
+   useEffect(()=>{
+    localStorage.setItem("Todos",JSON.stringify(todos))
+  },[todos])
+  
 
     const handleSubmit=(e)=>{
         e.preventDefault()
@@ -28,20 +48,18 @@ const Todo =({todos, setTodos, todo, setTodo, todoEditing, setTodoEditing, editi
          } )
          setTodos(updatedTodos)
       }
+
       const editTodo = (id) =>{
+        if (editingText.trim()){
         const updatedTodos = [...todos].map((todo) =>{
           if(todo.id===id) {
-            if (editingText.trim()){
               todo.text = editingText
-            }
-           
           }
           return todo
         })
           setTodos(updatedTodos)
           setTodoEditing(null)
-          setEditingText("")
-        
+          setEditingText("")}
       }
       const copyTodo = (id) =>{
         [...todos].map((todo) =>{
@@ -54,7 +72,7 @@ const Todo =({todos, setTodos, todo, setTodo, todoEditing, setTodoEditing, editi
 const toggleTodoForm=()=>{
     if (document.getElementById("todoForm").style.display==="none"){
         document.getElementById("todoForm").style.display="block"
-        document.getElementById("btnTodoToggle").innerText="Hide form"
+        document.getElementById("btnTodoToggle").innerText="Hide add todo"
     }else{
         document.getElementById("todoForm").style.display="none"
         document.getElementById("btnTodoToggle").innerText="Add new todo"
@@ -76,17 +94,17 @@ return(
           placeholder="ctrl+v to paste original todo"
           className="input-todo"
           />
-          <button onClick={()=>{
-            editTodo(todo.id)
-            copyTodo(todo.id)
-            }} id="btn-todo-editSubmit">Save</button>
+          <button onClick={()=>setTodoEditing(null)} id="btn-todo-cancel-edit"><i class="fa-solid fa-xmark"></i></button>
+          <button onClick={()=>editTodo(todo.id)} id="btn-todo-editSubmit"><i class="fa-solid fa-check"></i></button>
           </div>
           )
           :
           (<div id="todo-item-container">
             <p onClick={()=>toggleComplete(todo.id)} id="todo-item"className={`toto ${todo.completed?"completed":""}`}>{todo.text}</p>
             <button onClick={()=>deleteTodo(todo.id)} id="btn-todo-delete"><i className="fa-solid fa-trash-can"></i></button>
-            <button onClick={()=>setTodoEditing(todo.id)} id="btn-todo-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button onClick={()=>{
+              setTodoEditing(todo.id)
+              copyTodo(todo.id)}} id="btn-todo-edit"><i class="fa-solid fa-pen-to-square"></i></button>
           </div>)}
 
       </div>)}
