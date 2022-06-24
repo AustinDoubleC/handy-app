@@ -1,9 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
 const WeatherToday =({weather})=>{
-  
-    
-    
+
     return (
         <div className="weather">
           <h2>Today's weather</h2>

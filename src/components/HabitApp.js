@@ -6,7 +6,7 @@ const HabitApp =()=>{
   const [target, setTarget] =useState(1)
   const [habits, setHabits] = useState([])
   const d = new Date();
-  const day = d.getDay();
+  const weekday = d.getDay();
   const today = d.getDate()
 
   useEffect(()=>{
@@ -15,6 +15,16 @@ const HabitApp =()=>{
 
     if (loadedHabit){
       if (loadedHabit.length>0){
+        loadedHabit.forEach(habit => {
+          if (habit.date!==today && habit.frequency ==="Day"){
+            habit.rep=0
+            habit.completed=false
+          }
+          if (habit.date!==today && habit.frequency ==="Week" && weekday===1){
+            habit.rep=0
+            habit.completed=false
+          }
+        });
       setHabits(loadedHabit)}
     }else {
       setHabit([])
@@ -25,6 +35,8 @@ const HabitApp =()=>{
   useEffect(()=>{
     localStorage.setItem("Habits",JSON.stringify(habits))
   },[habits])
+
+
 
     const handleSubmitForm= (e)=>{
         e.preventDefault()
