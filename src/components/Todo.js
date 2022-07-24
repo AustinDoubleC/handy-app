@@ -61,14 +61,7 @@ const Todo =()=>{
           setTodoEditing(null)
           setEditingText("")}
       }
-      const copyTodo = (id) =>{
-        [...todos].map((todo) =>{
-          if(todo.id===id) {
-            navigator.clipboard.writeText(todo.text)
-          }
-          return todo
-        })
-      }
+
 const toggleTodoForm=()=>{
     if (document.getElementById("todoForm").style.display==="none"){
         document.getElementById("todoForm").style.display="block"
@@ -90,7 +83,7 @@ return(
           <input 
           type="text" 
           onChange = {(e)=>setEditingText(e.target.value)} 
-          valiue = {editingText}
+          value = {editingText}
           placeholder="ctrl+v to paste original todo"
           className="input-todo"
           />
@@ -104,7 +97,8 @@ return(
             <button onClick={()=>deleteTodo(todo.id)} id="btn-todo-delete"><i className="fa-solid fa-trash-can"></i></button>
             <button onClick={()=>{
               setTodoEditing(todo.id)
-              copyTodo(todo.id)}} id="btn-todo-edit"><i class="fa-solid fa-pen-to-square"></i></button>
+              setEditingText(todo.text)
+              }} id="btn-todo-edit"><i class="fa-solid fa-pen-to-square"></i></button>
           </div>)}
 
       </div>)}

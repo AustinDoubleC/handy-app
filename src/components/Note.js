@@ -54,14 +54,7 @@ const Note =()=>{
         setNoteEditing(null)
         setEditingNote("")}
       }
-      const copyNote=(id)=>{
-        [...notes].map((note) =>{
-          if(note.id===id) {
-            navigator.clipboard.writeText(note.text)
-          }
-          return note
-        })
-      }
+   
 
 return(
 <div className="note-app">
@@ -86,7 +79,7 @@ return(
           <textarea
           type="text" 
           onChange = {(e)=>{setEditingNote(e.target.value)}} 
-          valiue = {editingNote}
+          value = {editingNote}
           placeholder = {`(ctrl+v to paste original note)`}
           id="note-edit-area"
           />
@@ -105,7 +98,7 @@ return(
                 <button onClick={()=>deleteNote(note.id)} id="btn-note-delete"><i className="fa-solid fa-trash-can"></i></button>
                 <button onClick={()=>{
                   setNoteEditing(note.id)
-                  copyNote(note.id)
+                  setEditingNote(note.text)
                 }} id="btn-note-edit"><i className="fa-solid fa-pen-to-square"></i></button>
             </div>
           </div>)}
